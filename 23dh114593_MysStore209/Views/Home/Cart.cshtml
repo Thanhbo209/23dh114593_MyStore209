@@ -1,0 +1,280 @@
+﻿@model IEnumerable<_23dh114593_MysStore209.Models.Product>
+
+@{
+    ViewBag.Title = "Giỏ Hàng";
+ Layout = "~/Views/Shared/Navbar.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<style>
+    /* Thiết kế bảng giỏ hàng */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+        .table thead {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 14px;
+        }
+
+    /* Cột tổng cộng */
+    .product-total {
+        color: #FF5722;
+        font-weight: bold;
+    }
+
+    /* Nút hành động */
+    .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+
+    .btn-success {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-success:hover {
+            background-color: #388E3C;
+        }
+
+    /* Số lượng input */
+    .quantity-input {
+        width: 70px;
+        text-align: center;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Tổng tiền */
+    #cart-total {
+        font-size: 18px;
+        color: #FEA116;
+        font-weight: bold;
+    }
+
+    /* Hiển thị thông báo trống */
+    p {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
+
+    /* Hiệu ứng hover hàng */
+    .table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+    .about-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        background-image: url('https://themewagon.github.io/restoran/img/bg-hero.jpg'); /* Thay 'background.jpg' bằng đường dẫn ảnh nền của bạn */
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+    }
+
+        .about-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Lớp phủ tối để nổi bật văn bản */
+            z-index: 1;
+        }
+
+        .about-header h1 {
+            font-size: 48px;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+        }
+
+    .breadcrumb {
+        margin-top: 10px;
+        font-size: 16px;
+        z-index: 2;
+        position: relative;
+    }
+
+        .breadcrumb a {
+            color: #FEA116;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                text-decoration: underline;
+            }
+
+        .breadcrumb span {
+            color: #ffffff;
+        }
+
+</style>
+<body>
+    <main aria-labelledby="title">
+        <section class="about-header">
+            <h1>Giỏ Hàng</h1>
+            <div class="breadcrumb">
+                <a href="#">Trang Chủ</a> / <a href="#">Pages</a> / <span>Giỏ Hàng</span>
+            </div>
+        </section>
+    </main>
+    <h2>Giỏ Hàng</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên món ăn</th>
+                    <th>Miêu tả</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng cộng</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 1;
+                    decimal total = 0;
+                }
+
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@product.ProductName</td>
+                        <td>@product.ProductDecription</td>
+                        <td>@String.Format("{0:C0}", product.ProductPrice)</td>
+                        <td>
+                            <input type="number" value="1" min="1" class="form-control quantity-input" data-price="@product.ProductPrice" onchange="updateTotal(this)" />
+                        </td>
+                        <td class="product-total" data-total="@product.ProductPrice">@String.Format("{0:C0}", product.ProductPrice)</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart(@product.ProductID)">Xóa</button>
+                        </td>
+                    </tr>
+                    total += product.ProductPrice;
+                    index++;
+                }
+                <tr>
+                    <td colspan="5" class="text-right"><strong>Tổng tiền:</strong></td>
+                    <td colspan="2" id="cart-total" data-total="@total">@String.Format("{0:C0}", total)</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success" onclick="redirectToConfirmOrder()">Xác nhận đơn hàng</button>
+
+    }
+    else
+    {
+        <p>Giỏ hàng của bạn đang trống.</p>
+    }
+</body>
+
+<script>
+    function updateTotal(input) {
+        // Lấy giá trị số lượng
+        const quantity = parseInt(input.value); // Lấy số lượng từ ô nhập
+        const price = parseFloat(input.getAttribute("data-price")); // Lấy giá trị gốc từ data-price (không chứa định dạng)
+
+        // Tính tổng cho sản phẩm (số lượng * giá mỗi sản phẩm)
+        const productTotal = quantity * price;
+
+        // Cập nhật tổng tiền của sản phẩm trong hàng
+        const productTotalCell = input.closest("tr").querySelector(".product-total");
+        productTotalCell.setAttribute("data-total", productTotal); // Lưu giá trị tổng vào thuộc tính data-total
+        productTotalCell.textContent = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(productTotal);
+
+        // Tính lại tổng tiền giỏ hàng
+        let total = 0;
+        document.querySelectorAll(".product-total").forEach(cell => {
+            const value = parseFloat(cell.getAttribute("data-total")); // Lấy giá trị từ data-total
+            if (!isNaN(value)) {
+                total += value; // Cộng dồn tổng tiền
+            }
+        });
+
+        // Cập nhật tổng tiền giỏ hàng
+        const cartTotalCell = document.getElementById("cart-total");
+        cartTotalCell.setAttribute("data-total", total); // Lưu tổng tiền vào thuộc tính data-total
+        cartTotalCell.textContent = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
+    }
+
+
+    function removeFromCart(productId) {
+        $.ajax({
+            url: '@Url.Action("RemoveFromCart", "Home")',
+            type: 'POST',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    location.reload(); // Tải lại trang để cập nhật giỏ hàng
+                }
+            },
+            error: function () {
+                alert("Có lỗi xảy ra. Vui lòng thử lại.");
+            }
+        });
+    }
+      function redirectToConfirmOrder() {
+        console.log("Hàm redirectToConfirmOrder đã được gọi.");
+    window.location.href = '@Url.Action("ConfirmOrder", "Home")';
+    }
+
+    
+</script>
+</html>

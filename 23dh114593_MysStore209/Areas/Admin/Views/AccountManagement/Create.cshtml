@@ -1,0 +1,38 @@
+﻿@model _23dh114593_MysStore209.Areas.Admin.Data.AccountViewModel
+
+@{
+    ViewBag.Title = "Tạo tài khoản mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>Tạo tài khoản mới</h2>
+
+    @using (Html.BeginForm("Create", "AccountManagement", FormMethod.Post, new { area = "Admin" }))
+    {
+        @Html.AntiForgeryToken() <!-- Thêm dòng này -->
+        <div class="form-group">
+            <label for="Username">Tên đăng nhập</label>
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Nhập tên đăng nhập" })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="Password">Mật khẩu</label>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="Role">Quyền</label>
+            @Html.DropDownListFor(m => m.UserRole, new SelectList(new[] { new { Value = "C", Text = "Customer" }, new { Value = "A", Text = "Admin" } }, "Value", "Text"), "Chọn quyền", new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
+    }
+</body>
+</html>

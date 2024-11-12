@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="@(Url.Content("~/css/Navbar.css"))" rel="stylesheet" type="text/css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            padding: 20px 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: transparent;
+            transition: background-color 0.3s, padding 0.3s;
+            z-index: 999;
+        }
+        .logo-name {
+            color: #FEA116;
+            font-size: 40px;
+            font-weight: 900;
+            margin-left: 40px;
+            transition: font-size 0.3s;
+        }
+      .nav-items {
+          color: white;
+          display: flex;
+          flex-basis: auto;
+          padding-right: 20px;
+          margin-left: auto;
+
+      }
+        .nav-items a {
+            font-weight: 500;
+            transition: color 0.3s;
+            margin-left: 25px;
+            padding: 35px 0;
+            font-size: 15px;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+             .nav-link:hover,  .nav-link:active {
+                color: #FEA116 !important;
+            }
+
+        .book-btn {
+            color: #FFFFFF;
+            font-weight: 500;
+            background-color: #FEA116;
+            border-color: #FEA116;
+            text-decoration: none;
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important;
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important;
+            border-radius: 3px;
+            margin-right: 70px;
+            transition: ease 0.3s;
+        }
+            .book-btn:hover {
+                background-color: #ffad5a;
+                color: black;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 10px 0;
+                margin-left: 0;
+            }
+/*test*/
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            padding: 20px 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: transparent; /* Bắt đầu với màu nền trong suốt */
+            transition: background-color 0.3s, padding 0.3s;
+            z-index: 999;
+        }
+
+            .navbar-container.scrolled {
+                background-color: #0f172b; /* Màu nền xanh nước biển khi cuộn xuống */
+                padding: 5px 5px; /* Thu nhỏ chiều cao */
+            }
+
+        .logo-name {
+            color: #FEA116;
+            font-size: 40px;
+            font-weight: 900;
+            margin-left: 40px;
+            transition: font-size 0.3s;
+        }
+
+        .navbar-container.scrolled .logo-name {
+            font-size: 30px; /* Thu nhỏ logo khi cuộn xuống */
+        }
+        /* Container của giỏ hàng */
+        .cart-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: 18px;
+            color: white;
+            margin-right: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Biểu tượng giỏ hàng */
+        .cart-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Hiển thị số lượng sản phẩm */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #fea116;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 7px;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hiệu ứng hover */
+        .cart-container:hover {
+            transform: scale(1.1);
+        }
+
+            .cart-container:hover .cart-icon {
+                color: #fea116;
+            }
+
+            .cart-container:hover .cart-count {
+                background-color: #ffad5a;
+                transform: scale(1.1);
+            }
+            .login-name {
+                color: white;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="">
+        <nav class="navbar-container">
+            <h1 class="logo-name">
+                <i class="fas fa-utensils"></i> Restoran
+            </h1>
+            <div class="nav-items">
+                <a href="@Url.Content("~/Home/Index")" class="nav-link">Trang Chủ</a>
+                <a href="@Url.Content("~/Home/About")" class="nav-link">Giới Thiệu</a>
+                <a href="@Url.Content("~/Home/Services")" class="nav-link">Dịch Vụ</a>
+                <a href="@Url.Content("~/Home/Menu")" class="nav-link">Menu</a>
+                <a href="@Url.Content("~/Home/Contact")" class="nav-link">Liên Hệ</a>
+            </div>
+
+            @if (Session["Username"] != null)
+            {
+               <div style="display: flex; align-items: center;">
+                   <span class="login-name">Xin chào, @Session["Username"]</span>
+                   <a href="@Url.Content("~/Home/Cart")" class="cart-link">
+                       <div class="cart-container">
+                           <i class="fa fa-shopping-cart cart-icon"></i>
+                           <span id="cart-count" class="cart-count">
+                               @(Session["Cart"] != null ? ((List<int>)Session["Cart"]).Count : 0)
+                           </span>
+                       </div>
+                   </a>
+                   <a href="@Url.Action("Logout", "Account")" class="book-btn">ĐĂNG XUẤT</a>
+               </div>
+            }
+            else
+            {
+                <a href="@Url.Content("~/Account/Register")" class="book-btn">ĐĂNG NHẬP/ĐĂNG KÝ</a>
+            }
+            @*<a href="@Url.Content("~/Home/Register")" class="book-btn">ĐĂNG NHẬP/ĐĂNG KÝ</a>*@
+            @*ĐƠN HÀNG <i class="fa-solid fa-cart-shopping"></i>*@
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+
+</html>
+<script>
+    window.addEventListener("scroll", function () {
+        var navbar = document.querySelector(".navbar-container");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+
+
+</script>

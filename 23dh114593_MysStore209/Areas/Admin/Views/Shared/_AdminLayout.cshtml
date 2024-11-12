@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TRANG QUẢN TRỊ</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        title {
+            text-align: center;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            color: #dcdcdc !important;
+            transition: color 0.3s;
+        }
+
+            .nav-link:hover {
+                color: #fff !important;
+            }
+
+        .sidebar {
+            width: 220px;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            height: 100vh;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+
+            .sidebar a {
+                padding: 15px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #dcdcdc;
+                display: block;
+                transition: all 0.3s ease;
+            }
+
+                .sidebar a:hover {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #343a40;
+            color: #fff;
+        }
+        .navbar {
+            text-align: center;
+        }
+
+        .navbar-brand {
+            margin: 0 auto;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-center">
+        <div class="container">
+            @Html.ActionLink("TRANG QUẢN TRỊ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <li><a href="@Url.Action("Index", "ProductManagement", new { area = "Admin" })">Thêm sản phẩm</a></li>
+
+
+        <li><a href="@Url.Action("Index", "Orders", new { area = "Admin" })">Đơn Hàng</a></li>
+        <li><a href="@Url.Action("Index", "AccountManagement", new { area = "Admin" })">Quản lý tài khoản</a></li>
+      
+      
+      
+
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

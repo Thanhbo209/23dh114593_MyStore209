@@ -1,0 +1,250 @@
+﻿@{
+    Layout = null;
+}
+@{ Layout = "~/Views/Shared/Navbar.cshtml"; }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .about-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        background-image: url('https://themewagon.github.io/restoran/img/bg-hero.jpg'); /* Thay 'background.jpg' bằng đường dẫn ảnh nền của bạn */
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+    }
+
+        .about-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Lớp phủ tối để nổi bật văn bản */
+            z-index: 1;
+        }
+
+        .about-header h1 {
+            font-size: 48px;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+        }
+
+    .breadcrumb {
+        margin-top: 10px;
+        font-size: 16px;
+        z-index: 2;
+        position: relative;
+    }
+
+        .breadcrumb a {
+            color: #FEA116;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                text-decoration: underline;
+            }
+
+        .breadcrumb span {
+            color: #ffffff;
+        }
+
+    .menu {
+        text-align: center;
+        padding: 50px;
+        background-color: #fff;
+    }
+
+    .menu-title h2 {
+        color: #FF7A00;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .menu-title h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .menu-items {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .menu-item {
+        text-align: center;
+        color: #333;
+    }
+
+        .menu-item .icon {
+            font-size: 40px;
+            color: #FF7A00;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .menu-item p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .menu-item strong {
+            font-size: 18px;
+            color: #333;
+        }
+    .menu-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        margin-bottom: 50px;
+    }
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px); /* Hai cột trên màn hình lớn */
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .menu-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+    .menu-details {
+        padding: 10px 15px;
+        flex: 1;
+    }
+
+        .menu-details h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 5px;
+            color: #333;
+        }
+
+        .menu-details p {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .menu-details .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #f58220;
+        }
+</style>
+<main aria-labelledby="title">
+    <section class="about-header">
+        <h1>Thực Đơn</h1>
+        <div class="breadcrumb">
+            <a href="#">Trang Chủ</a> / <a href="#">Pages</a> / <span>Thực Đơn</span>
+        </div>
+    </section>
+</main>
+
+</section>
+
+<section class="menu">
+    <div class="menu-title">
+        <h2>Thực Đơn Món Ăn</h2>
+        <h1>Món Ăn Phổ Biến</h1>
+    </div>
+    <div class="menu-items">
+        <div class="menu-item">
+            <span class="icon">☕</span>
+            <p>Nổi Tiếng<br><strong>Bữa Sáng</strong></p>
+        </div>
+        <div class="menu-item">
+            <span class="icon">🍔</span>
+            <p>Đặc Biệt<br><strong>Bữa Trưa</strong></p>
+        </div>
+        <div class="menu-item">
+            <span class="icon">🍴</span>
+            <p>Đặc Sắc<br><strong>Bữa Tối</strong></p>
+        </div>
+    </div>
+</section>
+
+<section class="menu-section">
+    <div class="menu-item">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/17/32/f6/be/beef-burgur.jpg" alt="Bánh Burger Gà">
+        <div class="menu-details">
+            <h3>Bánh Burger Gà</h3>
+            <p>Bánh burger gà thơm ngon, giòn tan kết hợp rau xanh tươi mát.</p>
+            <span class="price">115.000 VNĐ</span>
+        </div>
+    </div>
+    <div class="menu-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg" alt="Pizza Hải Sản">
+        <div class="menu-details">
+            <h3>Pizza Hải Sản</h3>
+            <p>Pizza hải sản tươi ngon, đế bánh giòn rụm, phô mai ngập tràn.</p>
+            <span class="price">150.000 VNĐ</span>
+        </div>
+    </div>
+    <div class="menu-item">
+        <img src="https://fohlafood.vn/cdn/shop/articles/bi-quyet-nau-phi-bo-ngon-tuyet-dinh.jpg?v=1712213789" alt="Phở Bò">
+        <div class="menu-details">
+            <h3>Phở Bò</h3>
+            <p>Tô phở bò nóng hổi, nước dùng đậm đà, thơm ngon.</p>
+            <span class="price">60.000 VNĐ</span>
+        </div>
+
+    </div>
+    <div class="menu-item">
+        <img src="https://static.vinwonders.com/production/banh-mi-sai-gon-2.jpg" alt="Bánh Mì Thịt">
+        <div class="menu-details">
+            <h3>Bánh Mì Thịt</h3>
+            <p>Bánh mì thịt truyền thống với nhân đầy đặn, đậm đà hương vị.</p>
+            <span class="price">25.000 VNĐ</span>
+        </div>
+    </div>
+    <div class="menu-item">
+        <img src="https://i.ytimg.com/vi/w34Qnc-9KBU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAzXE6ASDMpVme1qsjbkQx4v-KaYA" alt="Gỏi Cuốn Tôm Thịt">
+        <div class="menu-details">
+            <h3>Gỏi Cuốn Tôm Thịt</h3>
+            <p>Gỏi cuốn tươi ngon với tôm, thịt, rau sống và nước chấm đặc biệt.</p>
+            <span class="price">40.000 VNĐ</span>
+        </div>
+    </div>
+    <div class="menu-item">
+        <img src="https://cdn.buffetposeidon.com/app/media/uploaded-files/090724-bun-cha-ha-noi-buffet-poseidon-1.jpeg" alt="Bún Chả Hà Nội">
+        <div class="menu-details">
+            <h3>Bún Chả Hà Nội</h3>
+            <p>Bún chả truyền thống với thịt nướng thơm phức và nước chấm đặc trưng.</p>
+            <span class="price">50.000 VNĐ</span>
+        </div>
+</section>
+
+@{ Html.RenderPartial("Footer"); }

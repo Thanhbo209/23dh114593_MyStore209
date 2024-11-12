@@ -1,0 +1,576 @@
+﻿@model IEnumerable<_23dh114593_MysStore209.Models.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ Layout = "~/Views/Shared/Navbar.cshtml"; }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    .banner-box {
+        background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url('https://themewagon.github.io/restoran/img/bg-hero.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .banner-wrap {
+        display: flex;
+        padding-top: 3rem;
+        padding-bottom: 3rem !important;
+        align-items: center !important;
+    }
+
+    .banner-content {
+        margin-top: 20px;
+        margin-right: 30px;
+        margin-left: 30px;
+        text-align: left !important;
+        width: 50%;
+        margin-bottom: 50px;
+    }
+
+    .banner-title {
+        color: #fff !important;
+        font-size: calc(1.525rem + 3.3vw);
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .banner-description {
+        color: #fff !important;
+        padding-bottom: .5rem !important;
+        margin-bottom: 1.5rem !important;
+        animation-name: slideInLeft;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    .banner-btn {
+        color: #FFFFFF;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: .5s;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-right: 3rem !important;
+        padding-left: 3rem !important;
+        margin-right: 1rem !important;
+        background-color: #FEA116;
+        border-color: #FEA116;
+        display: inline-block;
+        line-height: 1.5;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        font-size: 1rem;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        text-decoration: none;
+    }
+
+    .banner-img {
+        width: 40%;
+        margin-top: 100px;
+    }
+
+    @@keyframes imgRotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .img-restaurant {
+        animation: imgRotate 50s linear infinite;
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+        vertical-align: middle
+    }
+
+
+    .feature-cards {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 60px;
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+
+    /* Styling for each feature card */
+    .feature-card {
+        background-color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+        align-content: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        height: 180px;
+        transition: background-color 0.3s ease;
+    }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+        }
+
+    /* Icon styling */
+    .icon {
+        font-size: 40px;
+        color: #fea116;
+        margin-bottom: 10px;
+    }
+
+    .feature-card:hover {
+        color: #fff;
+        background: #fea116;
+    }
+
+        .feature-card:hover .icon {
+            color: #fff;
+        }
+
+        .feature-card:hover h3 {
+            color: #fff;
+        }
+
+        .feature-card:hover p {
+            color: #fff;
+        }
+
+    /*intro*/
+    .about {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px;
+    }
+
+    .about-images {
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        gap: 10px;
+    }
+
+        .about-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+    .about-content {
+        max-width: 500px;
+        padding-left: 20px;
+    }
+
+        .about-content h2 {
+            color: #FF7A00;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .about-content h1 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .about-content p {
+            color: #555;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+    .about-stats {
+        display: flex;
+        gap: 30px;
+        margin: 20px 0;
+    }
+
+        .about-stats div {
+            text-align: center;
+        }
+
+        .about-stats h3 {
+            font-size: 40px;
+            color: #FF7A00;
+        }
+
+    .read-more {
+        padding: 10px 20px;
+        background-color: #FF7A00;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+        .read-more:hover {
+            background-color: #e66b00;
+        }
+
+    /*        food section */
+    .menu {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .menu-title h2 {
+        font-size: 28px;
+        color: #333;
+    }
+
+    .menu-title h1 {
+        font-size: 36px;
+        color: #FF7A00;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .menu-item {
+        width: 250px;
+        height: 350px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        background-color: #fff;
+        margin-top: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .menu-item img {
+            max-width: 220px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .menu-item p {
+            font-size: 16px;
+            color: #333;
+            word-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .menu-item button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+            .menu-item button:hover {
+                background-color: #FF7A00;
+            }
+
+        .menu-item strong {
+            color: #FF7A00;
+            font-weight: bold;
+        }
+
+    /*in4 input*/
+    .reservation {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px;
+    }
+
+    .reservation-image {
+        position: relative;
+        width: 50%;
+    }
+
+        .reservation-image img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: #FF7A00;
+        cursor: pointer;
+    }
+
+    .reservation-form {
+        width: 40%;
+        background-color: #0e1626;
+        padding: 30px;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+        .reservation-form h2 {
+            color: #FF7A00;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .reservation-form h1 {
+            font-size: 36px;
+            margin: 10px 0 30px;
+        }
+
+        .reservation-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .reservation-form input,
+        .reservation-form select,
+        .reservation-form textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+
+            .reservation-form input::placeholder,
+            .reservation-form select::placeholder,
+            .reservation-form textarea::placeholder {
+                color: #aaa;
+            }
+
+        .reservation-form button {
+            padding: 15px;
+            background-color: #FF7A00;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .reservation-form button:hover {
+                background-color: #e66b00;
+            }
+    .scrollable-menu {
+        margin-top: 40px;
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #0f172b;
+    }
+    .search-box {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .search-input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .search-btn {
+        padding: 10px 20px;
+        background-color: #ff6700;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .search-btn:hover {
+            background-color: #e65c00;
+        }
+</style>
+<main class="banner-box">
+    <div class="banner-wrap">
+        <div class="banner-content">
+            <h1 class="banner-title">
+                Tận Hưởng Các
+                <br />
+                Món Ăn Ngon
+            </h1>
+            <p class="banner-description">
+
+                Chào mừng bạn đến với Nhà hàng Hương Vị Quê Hương – nơi hội tụ tinh hoa ẩm thực Việt Nam trong không gian ấm cúng và thân thiện. Chúng tôi tự hào mang đến cho thực khách những món ăn đậm đà bản sắc dân tộc, được chế biến từ những nguyên liệu tươi ngon nhất và bàn tay tài hoa của đội ngũ đầu bếp giàu kinh nghiệm.
+            </p>
+            <form action="/Products/Search" method="GET" class="search-box">
+                
+                <button type="submit" class="search-btn"><a href=""></a>Tìm kiếm</button>
+            </form>
+            
+        </div>
+        <div class="banner-img">
+            <img src="https://themewagon.github.io/restoran/img/hero.png" class="img-restaurant" />
+        </div>
+    </div>
+</main>
+@*giới thiệu*@
+<div class="feature-cards">
+    <div class="feature-card ">
+        <div class="icon"><i class="fas fa-user-tie"></i></div>
+        <h3>Đầu Bếp Chuyên Nghiệp</h3>
+        <p>Các đầu bếp có chuyên môn đến từ các châu lục.</p>
+    </div>
+    <div class="feature-card">
+        <div class="icon"><i class="fas fa-utensils"></i></div>
+        <h3>Món Ăn Chất Lượng</h3>
+        <p>Đảm bảo an toàn và chất lượng món ăn cho khách hàng.</p>
+    </div>
+    <div class="feature-card">
+        <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+        <h3>Đặt Món Online</h3>
+        <p>Khách hàng có thể đặt món từ bất cứ đâu nhanh chóng trực tuyến.</p>
+    </div>
+    <div class="feature-card">
+        <div class="icon"><i class="fas fa-headset"></i></div>
+        <h3>Dịch Vụ 24/7</h3>
+        <p>Hỗ trợ đặt món và thắc mắc khách hàng 24/7.</p>
+    </div>
+</div>
+
+<section class="about">
+    <div class="about-images">
+        <img src="https://themewagon.github.io/restoran/img/about-1.jpg" alt="Restaurant Interior">
+        <img src="https://themewagon.github.io/restoran/img/about-2.jpg" alt="Restaurant Dining Area">
+        <img src="https://themewagon.github.io/restoran/img/about-3.jpg" alt="Serving Salad">
+        <img src="https://themewagon.github.io/restoran/img/about-4.jpg" alt="Food Platter">
+    </div>
+    <div class="about-content">
+        <h2>Về Chúng Tôi</h2>
+        <h1>Chào Mừng Đến 🍴 Restoran</h1>
+        <p>
+            Tại Hương Vị Quê Hương, bạn không chỉ được thưởng thức những món ăn ngon mà còn được trải nghiệm không gian đậm chất truyền thống với lối bài trí tinh tế, gợi nhớ về vẻ đẹp làng quê Việt Nam. Hãy đến để tận hưởng những bữa ăn ngon miệng, chia sẻ những khoảnh khắc đáng nhớ bên gia đình và bạn bè.
+
+          
+        </p>
+        <p>  Chúng tôi rất hân hạnh được phục vụ bạn! 🌟</p>
+        <div class="about-stats">
+            <div>
+                <h3>15</h3>
+                <p>Năm <br> Kinh Nghiệm</p>
+            </div>
+            <div>
+                <h3>5</h3>
+                <p>Đầu Bếp <br> Nổi Tiếng</p>
+            </div>
+        </div>
+        <button class="read-more">HÃY KHÁM PHÁ NGAY NHÉ!</button>
+    </div>
+
+
+</section>
+
+<section class="menu">
+    <div class="menu-title">
+        <h2>Thực Đơn Món Ăn</h2>
+        <h1>Món Ăn Phổ Biến</h1>
+    </div>
+    <!-- Thêm lớp scrollable-menu tại đây -->
+    <div class="menu-items scrollable-menu">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var product in Model)
+            {
+                <div class="menu-item">
+                    <img src="@product.ProductImage" alt="@product.ProductName" class="product-image" />
+                    <p>@product.ProductDecription</p>
+                    <p>@product.ProductName<br><strong>@String.Format("{0:C0}", product.ProductPrice)</strong></p>
+                    <button class="btn btn-primary" onclick="addToCart(@product.ProductID)">Đặt món</button>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Hiện tại chưa có sản phẩm nào.</p>
+        }
+    </div>
+</section>
+
+
+
+<section class="reservation">
+    <div class="reservation-image">
+        <img src="https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2023/10/beacon_restaurants-2.jpg" alt="Couple Dining">
+
+    </div>
+    <div class="reservation-form">
+        <h2>NHÀ HÀNG CHÚNG TÔI</h2>
+        <h1>* Đặt Món Ăn Nhanh Chóng</h1>
+        <h1>* Ship Hỏa Tốc</h1>
+        <h1>* Món Ăn Đảm Bảo</h1>
+        <h1>* Đầu Bếp Chuyên Nghiệp</h1>
+        <h1>* Không Ngon Hoàn Tiền</h1>
+        <h1>* Có Khuyến Mãi 20% Đơn Đầu</h1>
+        <h1>* Sang Trọng Quý Phái</h1>
+
+        <form>
+        </form>
+    </div>
+</section>
+
+
+@{ Html.RenderPartial("Footer"); }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    function addToCart(productId) {
+        $.ajax({
+            url: '@Url.Action("AddToCart", "Home")',
+            type: 'GET',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    // Cập nhật số lượng giỏ hàng
+                    const cartCount = document.getElementById('cart-count');
+                    if (cartCount) {
+                        cartCount.innerText = response.cartCount;
+                    }
+                    alert("Đã thêm món vào giỏ hàng!");
+                } else {
+                    // Nếu chưa đăng nhập, hiển thị thông báo yêu cầu đăng nhập
+                    alert(response.message); // "Bạn cần đăng nhập để đặt món."
+                    window.location.href = '@Url.Action("Login", "Account")'; // Chuyển hướng đến trang đăng nhập
+                }
+            },
+            error: function () {
+                alert("Có lỗi xảy ra. Vui lòng thử lại!");
+            }
+        });
+    }
+</script>

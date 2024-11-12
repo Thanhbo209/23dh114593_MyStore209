@@ -1,0 +1,12 @@
+# Bỏ qua thư mục Visual Studio
+.vs/
+
+# Bỏ qua các file tạm và thư mục không cần thiết
+bin/
+obj/
+*.user
+*.suo
+*.tmp
+
+# Bỏ qua thư mục node_modules
+node_modules/

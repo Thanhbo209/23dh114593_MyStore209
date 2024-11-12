@@ -1,0 +1,52 @@
+﻿@model IEnumerable<_23dh114593_MysStore209.Areas.Admin.Data.AccountViewModel>
+
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="mb-3">
+        <a href="@Url.Action("Create", "AccountManagement", new { area = "Admin" })" class="btn btn-success">Tạo tài khoản</a>
+    </div>
+    <h2>Quản lý tài khoản</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Đăng Nhập</th>
+                <th>Role</th>
+                <th>Tên Khách Hàng</th>
+                <th>Email</th>
+                <th>Địa Chỉ</th>
+                <th>Số Điện Thoại</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model)
+            {
+                <tr>
+                    <td>@account.Username</td>
+                    <td>@(account.UserRole == "C" ? "Customer" : "Admin")</td>
+                    <td>@account.CustomerName</td>
+                    <td>@account.CustomerEmail</td>
+                    <td>@account.CustomerAddress</td>
+                    <td>@account.CustomerPhone</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "AccountManagement", new { area = "Admin", username = account.Username })" class="btn btn-primary">Chỉnh sửa</a>
+                        <a href="@Url.Action("Delete", "AccountManagement", new { area = "Admin", username = account.Username })" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

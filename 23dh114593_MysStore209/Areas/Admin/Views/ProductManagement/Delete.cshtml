@@ -1,0 +1,25 @@
+﻿@model _23dh114593_MysStore209.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xóa sản phẩm</h2>
+
+<div>
+    <h3>Bạn có chắc muốn xóa sản phẩm này?</h3>
+    <p>
+        <strong>Tên sản phẩm:</strong> @Model.ProductName <br />
+        <strong>Mô tả:</strong> @Model.ProductDecription <br />
+        <strong>Giá:</strong> @String.Format("{0:C0}", Model.ProductPrice)
+    </p>
+
+    @using (Html.BeginForm("Delete", "ProductManagement", FormMethod.Post, new { id = Model.ProductID, area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="@Url.Action("Index", "ProductManagement", new { area = "Admin" })" class="btn btn-secondary">Hủy</a>
+    }
+</div>

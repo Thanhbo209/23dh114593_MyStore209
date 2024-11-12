@@ -1,0 +1,58 @@
+﻿@model _23dh114593_MysStore209.Models.Product
+
+@{
+    ViewBag.Title = "Thêm Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>Thêm Sản Phẩm</h2>
+    @using (Html.BeginForm("Create", "ProductManagement", FormMethod.Post, new { area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="ProductName">Tên sản phẩm</label>
+            @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+            @Html.ValidationMessageFor(m => m.ProductName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="ProductDescription">Mô tả</label>
+            @Html.TextAreaFor(m => m.ProductDecription, new { @class = "form-control", rows = 3 })
+            @Html.ValidationMessageFor(m => m.ProductDecription, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="ProductPrice">Giá</label>
+            @Html.TextBoxFor(m => m.ProductPrice, new { @class = "form-control", placeholder = "Nhập giá sản phẩm" })
+            @Html.ValidationMessageFor(m => m.ProductPrice, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="ProductImage">Hình ảnh</label>
+            @Html.TextBoxFor(m => m.ProductImage, new { @class = "form-control", placeholder = "URL hình ảnh sản phẩm" })
+            @Html.ValidationMessageFor(m => m.ProductImage, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="CategoryID">Danh mục</label>
+            @Html.DropDownListFor(
+                     m => m.CategoryID,
+                     new SelectList(ViewBag.Categories, "CategoryID", "CategoryName"),
+                     "Chọn danh mục",
+                     new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CategoryID, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+    }
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<_23dh114593_MysStore209.Areas.Admin.Data.OrderDetailViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên món ăn</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Tổng cộng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model)
+                {
+                    <tr>
+                        <td>@detail.ProductName</td>
+                        <td>@detail.Quantity</td>
+                       
+                        <td>@String.Format("{0:C0}", detail.UnitPrice)</td>
+                        <td>@String.Format("{0:C0}", detail.TotalPrice)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
